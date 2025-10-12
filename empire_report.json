@@ -1,0 +1,25 @@
+{
+  "empire_metrics": {
+    "total_content_pieces": 2,
+    "total_reach": 63385,
+    "total_revenue": 378.04999999999995,
+    "monthly_revenue": 113.41499999999998,
+    "follower_count": 25000,
+    "authenticity_score": 89.0,
+    "platforms_active": 4,
+    "last_updated": "2025-10-12 02:08:57"
+  },
+  "content_library_size": 2,
+  "revenue_breakdown": {
+    "affiliate_marketing": 151.22,
+    "digital_courses": 94.51249999999999,
+    "ad_revenue": 113.41499999999998,
+    "consulting": 18.9025
+  },
+  "targets": {
+    "month_1": 2000,
+    "month_6": 25000,
+    "month_12": 50000
+  },
+  "generated_at": "2025-10-12T02:09:28.996094"
+}
