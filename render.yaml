@@ -1,0 +1,12 @@
+services:
+  - type: worker
+    name: spiritual-empire
+    env: python
+    region: oregon
+    plan: starter
+    buildCommand: |
+      apt-get update
+      apt-get install -y ffmpeg
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: python empire_engine.py
