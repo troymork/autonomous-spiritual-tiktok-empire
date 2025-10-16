@@ -40,12 +40,24 @@ except Exception as e:
     raise
 
 try:
-    from content_creator import ContentCreator
-    print("✅ ContentCreator imported", flush=True)
-except Exception as e:
-    print(f"❌ ContentCreator import failed: {e}", flush=True)
-    raise
+from video_generation_upgrade import create_video
 
+def generate_and_publish():
+    print("🎬 Generating upgraded animated video with voice-over...")
+    text_script = content_generator.generate_script()
+    audio_path = "voice_over.mp3"
+    video_path = "final_video.mp4"
+
+    # Create video with voice-over and subtitles
+    create_video(
+        script_text=text_script,
+        voice_output=audio_path,
+        subtitles=True,
+        motion_background=True
+    )
+
+    # Upload result to YouTube
+    youtube_publisher.upload(video_path, title="The Unity of Timeless Wisdom")
 try:
     from youtube_publisher import YouTubePublisher
     print("✅ YouTubePublisher imported", flush=True)
