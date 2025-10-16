@@ -4,21 +4,77 @@ Empire Engine - Main automation orchestrator
 Runs the complete content cycle every 8 hours
 """
 
+import sys
+print("🔮 SCRIPT STARTING...", flush=True)
+sys.stdout.flush()
+
 import time
 import schedule
 from datetime import datetime
-from config import Config
-from content_generator import ContentGenerator
-from content_creator import ContentCreator
-from youtube_publisher import YouTubePublisher
+
+print("✅ Imports: time, schedule, datetime", flush=True)
+
+try:
+    from config import Config
+    print("✅ Config imported", flush=True)
+except Exception as e:
+    print(f"❌ Config import failed: {e}", flush=True)
+    raise
+
+try:
+    from content_generator import ContentGenerator
+    print("✅ ContentGenerator imported", flush=True)
+except Exception as e:
+    print(f"❌ ContentGenerator import failed: {e}", flush=True)
+    raise
+
+try:
+    from content_creator import ContentCreator
+    print("✅ ContentCreator imported", flush=True)
+except Exception as e:
+    print(f"❌ ContentCreator import failed: {e}", flush=True)
+    raise
+
+try:
+    from youtube_publisher import YouTubePublisher
+    print("✅ YouTubePublisher imported", flush=True)
+except Exception as e:
+    print(f"❌ YouTubePublisher import failed: {e}", flush=True)
+    raise
 
 class EmpireEngine:
     def __init__(self):
-        Config.validate()
-        self.generator = ContentGenerator()
-        self.creator = ContentCreator()
-        self.publisher = YouTubePublisher()
+        print("🔮 Initializing EmpireEngine...", flush=True)
+        try:
+            Config.validate()
+            print("✅ Config validated", flush=True)
+        except Exception as e:
+            print(f"❌ Config validation failed: {e}", flush=True)
+            raise
+        
+        try:
+            self.generator = ContentGenerator()
+            print("✅ ContentGenerator initialized", flush=True)
+        except Exception as e:
+            print(f"❌ ContentGenerator init failed: {e}", flush=True)
+            raise
+            
+        try:
+            self.creator = ContentCreator()
+            print("✅ ContentCreator initialized", flush=True)
+        except Exception as e:
+            print(f"❌ ContentCreator init failed: {e}", flush=True)
+            raise
+            
+        try:
+            self.publisher = YouTubePublisher()
+            print("✅ YouTubePublisher initialized", flush=True)
+        except Exception as e:
+            print(f"❌ YouTubePublisher init failed: {e}", flush=True)
+            raise
+            
         self.stats = {'total_posts': 0, 'last_post': None}
+        print("✅ EmpireEngine ready!", flush=True)
     
     def run_cycle(self):
         """Execute one complete content cycle"""
@@ -77,5 +133,13 @@ class EmpireEngine:
             time.sleep(60)
 
 if __name__ == '__main__':
-    engine = EmpireEngine()
-    engine.start()
+    print("🚀 Main block executing...", flush=True)
+    try:
+        engine = EmpireEngine()
+        print("✅ Engine created, calling start()...", flush=True)
+        engine.start()
+    except Exception as e:
+        print(f"❌ Fatal error: {e}", flush=True)
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
