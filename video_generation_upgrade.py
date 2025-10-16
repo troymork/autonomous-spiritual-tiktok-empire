@@ -1,5 +1,6 @@
 from moviepy.editor import *
 from gtts import gTTS
+import numpy as np
 
 def create_video(script_text, voice_output="voice.mp3", subtitles=True, motion_background=True):
     # generate voice-over
