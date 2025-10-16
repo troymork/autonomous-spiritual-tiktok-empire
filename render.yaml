@@ -1,11 +1,20 @@
 services:
   - type: worker
-    name: spiritual-empire
+    name: video-worker
     env: python
-    region: oregon
+    buildCommand: pip install -r requirements.txt && apt-get update && apt-get install -y ffmpeg
+    startCommand: python video_generation_upgrade.py
+    autoDeploy: true
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: YOUTUBE_TOKEN
+        sync: false
+      - key: FIREBASE_CONFIG
+        sync: false
     plan: starter
-    nativeBuildCommand: apt-get update && apt-get install -y ffmpeg
-    buildCommand: |
-      pip install --upgrade pip
-      pip install -r requirements.txt
-    startCommand: python empire_engine.py
+    region: oregon
+    healthCheckPath: /health
+    cron:
+      schedule: "0 */8 * * *"
+      command: python video_generation_upgrade.py --auto
